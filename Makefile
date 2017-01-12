@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/11 00:03:30 by agrumbac          #+#    #+#              #
-#    Updated: 2017/01/11 03:56:41 by agrumbac         ###   ########.fr        #
+#    Updated: 2017/01/12 21:49:40 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ all:${NAME}
 ${NAME}: ${OBJ}
 	@make -C libft/
 	@echo Compiling ${NAME}
+	@${CC} ${CFLAGS} -I./libft/includes/ -Llibft/ -lft -I. -o $@ $<
 	@echo Job\'s done
 
 ${OBJDIR}/%.o : ./srcs/%.c
@@ -48,4 +49,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+build: ${OBJ}
+
+.PHONY: all clean fclean re build
