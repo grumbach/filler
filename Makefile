@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/11 00:03:30 by agrumbac          #+#    #+#              #
-#    Updated: 2017/01/12 21:49:40 by agrumbac         ###   ########.fr        #
+#    Updated: 2017/01/14 07:39:21 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,13 @@ fclean: clean
 	@echo fclean libft...
 	@make -C libft/ fclean
 	@echo clean ${NAME}...
-	@/bin/rm -f ${NAME}
+	@/bin/rm -f ${NAME} test
+
+test:${OBJ}
+	@${CC} -I./libft/includes/ -Llibft/ -lft -I. -o $@ $<
 
 re: fclean all
 
 build: ${OBJ}
 
-.PHONY: all clean fclean re build
+.PHONY: all clean fclean re test
