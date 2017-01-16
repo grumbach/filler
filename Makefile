@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/11 00:03:30 by agrumbac          #+#    #+#              #
-#    Updated: 2017/01/14 07:39:21 by agrumbac         ###   ########.fr        #
+#    Updated: 2017/01/16 02:13:29 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,9 @@ fclean: clean
 	@echo clean ${NAME}...
 	@/bin/rm -f ${NAME} test
 
-test:${OBJ}
-	@${CC} -I./libft/includes/ -Llibft/ -lft -I. -o $@ $<
+test:
+	@${CC} -I./libft/includes/ -Llibft/ -lft -I. -o ${NAME} \
+	$(addprefix srcs/, ${SRC})
 
 re: fclean all
 
