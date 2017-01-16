@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/16 09:30:38 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/16 17:56:55 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct	s_fill
 {
 	char		**map;
 	char		**block;
+	int			mapxy[2];
+	int			blockxy[2];
 	char		player;
 }				t_fill;
 

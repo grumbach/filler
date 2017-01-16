@@ -6,14 +6,14 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:18:10 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/16 09:39:20 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/16 18:42:48 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-//connard
-#include <stdio.h>
+void	free_fill()
+{}
 
 char	**map_read(int y, int location)
 {
@@ -48,7 +48,8 @@ int		main(void)
 	char		*line;
 	t_fill		fill;
 
-	fill = (t_fill){0, 0, 'o'};
+	ft_bzero(&fill, sizeof(t_fill));
+	fill.player = 'o';
 	line = NULL;
 	if (ft_get_next_line(0, &line) < 0)
 		return (-1);
@@ -63,7 +64,9 @@ int		main(void)
 		else if (line[0] == 'P' && !(fill.map))
 			fill.map = map_read(ft_atoi(line + 8), 4);
 		else if (line[0] == 'P')
+		{
 			fill.block = map_read(ft_atoi(line + 5), 0);
+		}
 		ft_memdel((void**)&line);
 	}
 	ft_printf("==============END================\n");
