@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:18:10 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/18 15:02:13 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/18 23:55:26 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int				main(void)
 				filler(&fill, &ret, line);
 							ft_printf("%42	player : %c\n", fill.player);
 							ft_printf("%42	returned(%d %d)\n", ret.y, ret.x);
+			sleep(1);
 			ft_putstr(ft_itoa(ret.y));
 			ft_putstr(" ");
 			ft_putendl(ft_itoa(ret.x));
