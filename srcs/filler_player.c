@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:10:01 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/18 19:26:10 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:40:19 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int				canplace(t_fill *fill, t_xy pos)
 	t_xy	try;
 	int		friendlies;
 
+	ft_printf("oh[%d,%d]", pos.y, pos.x);
 	friendlies = 0;
 	ft_bzero(&try, sizeof(t_xy));
 	while (try.y < fill->blockyx[0])
 	{
+		try.x = 0;
 		while (try.x < fill->blockyx[1])
 		{
 			if (fill->block[try.y][try.x] == '*')
@@ -39,6 +41,7 @@ int				canplace(t_fill *fill, t_xy pos)
 	}
 	if (friendlies != 1)
 		return (0);
+	ft_printf("OK!");
 	return (1);
 }
 
@@ -71,4 +74,6 @@ static t_xy		tryblock(t_fill *fill, t_xy dir)//place bloc in dir ret xy
 void			blockplacer(t_fill *fill, t_xy *ret)
 {
 	*ret = tryblock(fill, watchtower(fill));
+	if (!(ret->x && ret->y))
+		exit(0);
 }
