@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:10:01 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/18 23:52:11 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 00:13:05 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,7 @@ int				canplace(t_fill *fill, t_xy pos)
 
 static t_xy		watchtower(t_fill *fill)//watch enemy's last move, ret opp dir
 {
-	t_xy	direction;
-
-	//ft_bzero(&direction, sizeof(t_xy));
-	direction.x = fill->mapyx[1] - fill->blockyx[1];
-	direction.y = fill->mapyx[0] - fill->blockyx[0];
-	return (direction);
+	return (go_bot_left(fill));
 }
 
 static t_xy		tryblock(t_fill *fill, t_xy dir)//place bloc in dir ret xy

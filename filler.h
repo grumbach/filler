@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/18 15:50:15 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 00:10:26 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ t_xy			xd_yp(t_fill *fill, t_xy dir);
 t_xy			xp_yd(t_fill *fill, t_xy dir);
 t_xy			xp_yp(t_fill *fill, t_xy dir);
 int				canplace(t_fill *fill, t_xy pos);
+t_xy			go_top_left(t_fill *fill);
+t_xy			go_bot_left(t_fill *fill);
+t_xy			go_top_right(t_fill *fill);
+t_xy			go_bot_right(t_fill *fill);
 
 #endif
