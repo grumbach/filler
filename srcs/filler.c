@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:18:10 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/17 18:01:19 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:02:13 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ static void		free_fill(t_fill *fill)
 	i = 0;
 	while (i < fill->mapyx[0])
 	{
-		free(fill->map[i]);
+		ft_memdel((void**)&(fill->map[i]));
 		i++;
 	}
-	free(fill->map);
+	ft_memdel((void**)&(fill->map));
 	i = 0;
 	while (i < fill->blockyx[0])
 	{
-		free(fill->block[i]);
+		ft_memdel((void**)&(fill->block[i]));
 		i++;
 	}
-	free(fill->block);
+	ft_memdel((void**)&(fill->block));
 }
 
 static char		**map_read(int y, int x, int location, int *yx)
@@ -38,7 +38,7 @@ static char		**map_read(int y, int x, int location, int *yx)
 	char		*line;
 	int			i;
 
-	//ft_printf("y=%d x=%d\n", y, x);
+							ft_printf("y=%d x=%d\n", y, x);
 	i = 0;
 	yx[0] = y;
 	yx[1] = x;
@@ -46,7 +46,7 @@ static char		**map_read(int y, int x, int location, int *yx)
 	if (location)
 	{
 		if (ft_get_next_line(0, &line) < 0)
-			return (0);//skip 01234567890123..
+			return (0);
 		ft_memdel((void**)&line);
 	}
 	while (i < y)
@@ -55,21 +55,25 @@ static char		**map_read(int y, int x, int location, int *yx)
 			return (0);
 		if (!(map[i] = ft_strdup(line + location)))
 			return (0);
-		//ft_printf("%.3d %s\n", i, map[i]);
+							ft_printf("%.3d %s\n", i, map[i]);
 		i++;
 		ft_memdel((void**)&line);
 	}
 	return (map);
 }
 
-static int		filler(t_fill *fill, t_xy *ret)
+static int		filler(t_fill *fill, t_xy *ret, char *line)
 {
-	char		*line;
+	int		gnl;
 
-	ft_printf("%42	start parse\n");
-	while (ft_get_next_line(0, &line) > 0)
+							ft_printf("%42	start parse\n");
+	gnl = 1;
+	if (!line)
+		gnl = ft_get_next_line(0, &line);
+	while (gnl)
 	{
-		ft_printf("%42	reading...\n");
+							ft_printf("%42	reading...\n");
+							ft_printf("%42	line{%s}\n", line);
 		if (line[0] == 0)
 			return (0);
 		else if (line[0] == 'P' && !(fill->map))
@@ -85,8 +89,10 @@ static int		filler(t_fill *fill, t_xy *ret)
 			break ;
 		}
 		ft_memdel((void**)&line);
+		gnl = ft_get_next_line(0, &line);
 	}
-	ft_printf("%42	end parse\n");
+	ft_memdel((void**)&line);
+							ft_printf("%42	end parse\n");
 	return (1);
 }
 
@@ -95,23 +101,31 @@ int				main(void)
 	char		*line;
 	t_fill		fill;
 	t_xy		ret;
+	int			gnl;
 
+							ft_printf("%42	called me\n");
 	ft_bzero(&fill, sizeof(t_fill));
-	fill.player = 'o';
-	line = NULL;
-	if (ft_get_next_line(0, &line) < 0)
-		return (-1);
-	if (line[10] == '2')
-		fill.player = 'x';
-	ft_printf("%42	player : %c\n", fill.player);
-	ft_memdel((void**)&line);
-	while (filler(&fill, &ret))
+	gnl = ft_get_next_line(0, &line);
+	while (gnl != -1)
 	{
-		ft_printf("%42	returned(%d %d)\n", ret.x, ret.y);
-		ft_putstr(ft_itoa(ret.x));
-		ft_putstr(" ");
-		ft_putendl(ft_itoa(ret.y));
-		sleep(1);
+		if (gnl)
+		{
+			if (line[9] == 'p')
+			{
+				fill.player = (line[10] == '2' ? 'x' : 'o');
+				filler(&fill, &ret, NULL);
+				ft_memdel((void**)&line);
+			}
+			else
+				filler(&fill, &ret, line);
+							ft_printf("%42	player : %c\n", fill.player);
+							ft_printf("%42	returned(%d %d)\n", ret.y, ret.x);
+			ft_putstr(ft_itoa(ret.y));
+			ft_putstr(" ");
+			ft_putendl(ft_itoa(ret.x));
+		}
+		gnl = ft_get_next_line(0, &line);
 	}
+							ft_printf("%42	bye\n");
 	return (0);
 }
