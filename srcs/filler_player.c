@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:10:01 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 00:13:05 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 16:07:29 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				canplace(t_fill *fill, t_xy pos)
 	t_xy	try;
 	int		friendlies;
 
-	ft_printf("oh[%d,%d]", pos.y, pos.x);
+	//ft_printf("oh[%d,%d]", pos.y, pos.x);
 	friendlies = 0;
 	try.y = 0;
 	while (try.y < fill->blockyx[0])
@@ -41,13 +41,23 @@ int				canplace(t_fill *fill, t_xy pos)
 	}
 	if (friendlies != 1)
 		return (0);
-	ft_printf("OK!");
+	//ft_printf("OK!");
 	return (1);
 }
 
 static t_xy		watchtower(t_fill *fill)//watch enemy's last move, ret opp dir
 {
-	return (go_bot_left(fill));
+	static int	rando = 0;
+
+	rando++;
+	if (rando % 4 == 0)
+		return (go_bot_left(fill));
+	if (rando % 3 == 0)
+		return (go_top_left(fill));
+	if (rando % 2 == 0)
+		return (go_bot_right(fill));
+	else
+		return (go_top_right(fill));
 }
 
 static t_xy		tryblock(t_fill *fill, t_xy dir)//place bloc in dir ret xy
@@ -68,9 +78,10 @@ static t_xy		tryblock(t_fill *fill, t_xy dir)//place bloc in dir ret xy
 	}
 }
 
-void			blockplacer(t_fill *fill, t_xy *ret)
+int				blockplacer(t_fill *fill, t_xy *ret)
 {
 	*ret = tryblock(fill, watchtower(fill));
-	if (!(ret->x || ret->y))
-		exit(0);
+	if (ret->x == -1 || ret->y == -1)
+		return (0);
+	return (1);
 }

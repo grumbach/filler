@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:40:00 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/18 23:51:46 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 16:07:32 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_xy	xd_yd(t_fill *fill, t_xy dir)
 {
 	t_xy	best;
 
-	best = (t_xy){0, 0};
+	best = (t_xy){-1, -1};
 	while (dir.x >= 0)
 	{
 		dir.y = fill->mapyx[0] - fill->blockyx[0];
@@ -35,7 +35,7 @@ t_xy	xd_yp(t_fill *fill, t_xy dir)
 {
 	t_xy	best;
 
-	best = (t_xy){0, 0};
+	best = (t_xy){-1, -1};
 	while (dir.x >= 0)
 	{
 		dir.y = 0;
@@ -54,7 +54,7 @@ t_xy	xp_yd(t_fill *fill, t_xy dir)
 {
 	t_xy	best;
 
-	best = (t_xy){0, 0};
+	best = (t_xy){-1, -1};
 	while (dir.x + fill->blockyx[1] <= fill->mapyx[1])
 	{
 		dir.y = fill->mapyx[0] - fill->blockyx[0];
@@ -73,7 +73,7 @@ t_xy	xp_yp(t_fill *fill, t_xy dir)
 {
 	t_xy	best;
 
-	best = (t_xy){0, 0};
+	best = (t_xy){-1, -1};
 	while (dir.x + fill->blockyx[1] <= fill->mapyx[1])
 	{
 		dir.y = 0;

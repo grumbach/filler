@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 00:10:26 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 16:07:21 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_xy
 	int			y;
 }				t_xy;
 
-void			blockplacer(t_fill *fill, t_xy *ret);
+int				blockplacer(t_fill *fill, t_xy *ret);
 t_xy			xd_yd(t_fill *fill, t_xy dir);
 t_xy			xd_yp(t_fill *fill, t_xy dir);
 t_xy			xp_yd(t_fill *fill, t_xy dir);
