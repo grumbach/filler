@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:40:00 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 16:07:32 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 17:41:07 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_xy	xd_yd(t_fill *fill, t_xy dir)
 	best = (t_xy){-1, -1};
 	while (dir.x >= 0)
 	{
-		dir.y = fill->mapyx[0] - fill->blockyx[0];
+		dir.y = fill->mapyx.y - fill->blockyx.y;
 		while (dir.y >= 0)
 		{
 			if (canplace(fill, dir))
@@ -39,7 +39,7 @@ t_xy	xd_yp(t_fill *fill, t_xy dir)
 	while (dir.x >= 0)
 	{
 		dir.y = 0;
-		while (dir.y + fill->blockyx[0] <= fill->mapyx[0])
+		while (dir.y + fill->blockyx.y <= fill->mapyx.y)
 		{
 			if (canplace(fill, dir))
 				best = dir;
@@ -55,9 +55,9 @@ t_xy	xp_yd(t_fill *fill, t_xy dir)
 	t_xy	best;
 
 	best = (t_xy){-1, -1};
-	while (dir.x + fill->blockyx[1] <= fill->mapyx[1])
+	while (dir.x + fill->blockyx.x <= fill->mapyx.x)
 	{
-		dir.y = fill->mapyx[0] - fill->blockyx[0];
+		dir.y = fill->mapyx.y - fill->blockyx.y;
 		while (dir.y >= 0)
 		{
 			if (canplace(fill, dir))
@@ -74,10 +74,10 @@ t_xy	xp_yp(t_fill *fill, t_xy dir)
 	t_xy	best;
 
 	best = (t_xy){-1, -1};
-	while (dir.x + fill->blockyx[1] <= fill->mapyx[1])
+	while (dir.x + fill->blockyx.x <= fill->mapyx.x)
 	{
 		dir.y = 0;
-		while (dir.y + fill->blockyx[0] <= fill->mapyx[0])
+		while (dir.y + fill->blockyx.y <= fill->mapyx.y)
 		{
 			if (canplace(fill, dir))
 				best = dir;
