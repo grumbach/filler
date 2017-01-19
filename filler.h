@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 18:08:54 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 19:32:53 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ typedef struct	s_fill
 }				t_fill;
 
 int				blockplacer(t_fill *fill, t_xy *ret);
-t_xy			xd_yd(t_fill *fill, t_xy dir);
-t_xy			xd_yp(t_fill *fill, t_xy dir);
-t_xy			xp_yd(t_fill *fill, t_xy dir);
-t_xy			xp_yp(t_fill *fill, t_xy dir);
+t_xy			xd_yd(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy));
+t_xy			xd_yp(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy));
+t_xy			xp_yd(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy));
+t_xy			xp_yp(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy));
 int				canplace(t_fill *fill, t_xy pos);
+int				enemy_pos(t_fill *fill, t_xy try);
+int				my_pos(t_fill *fill, t_xy try);
 t_xy			go_top_left(t_fill *fill);
 t_xy			go_bot_left(t_fill *fill);
 t_xy			go_top_right(t_fill *fill);
 t_xy			go_bot_right(t_fill *fill);
-t_xy			enemy_last_move(t_fill *fill);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:10:01 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 18:10:47 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/19 22:53:07 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ int				canplace(t_fill *fill, t_xy pos)
 
 static t_xy		watchtower(t_fill *fill)//watch enemy's last move, ret opp dir
 {
-	static int	rando = 0;
+	static int		rando = 0;
 
-	enemy_last_move(fill);
 	rando++;
 	if (rando % 4 == 0)
 		return (go_bot_left(fill));
@@ -62,16 +61,16 @@ static t_xy		tryblock(t_fill *fill, t_xy dir)//place bloc in dir ret xy
 	if (dir.x)
 	{
 		if (dir.y)
-			return (xd_yd(fill, dir));
+			return (xd_yd(fill, dir, &canplace));
 		else
-			return (xd_yp(fill, dir));
+			return (xd_yp(fill, dir, &canplace));
 	}
 	else
 	{
 		if (dir.y)
-			return (xp_yd(fill, dir));
+			return (xp_yd(fill, dir, &canplace));
 		else
-			return (xp_yp(fill, dir));
+			return (xp_yp(fill, dir, &canplace));
 	}
 }
 
