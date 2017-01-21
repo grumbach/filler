@@ -6,21 +6,23 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:40:00 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 22:52:57 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/21 17:55:31 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_xy	xd_yd(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
+t_xy	xd_yd(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
 	t_xy	best;
+	t_xy	try;
 
 	best = (t_xy){-1, -1};
-	while (try.x >= 0)
+	try.x = start.x;
+	while (try.x >= end.x)
 	{
-		try.y = fill->mapyx.y - fill->blockyx.y;
-		while (try.y >= 0)
+		try.y = start.y;
+		while (try.y >= end.y)
 		{
 			if (f(fill, try))
 				best = try;
@@ -31,15 +33,17 @@ t_xy	xd_yd(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
 	return (best);
 }
 
-t_xy	xd_yp(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
+t_xy	xd_yp(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
 	t_xy	best;
+	t_xy	try;
 
 	best = (t_xy){-1, -1};
-	while (try.y + fill->blockyx.y <= fill->mapyx.y)
+	try.y = start.y;
+	while (try.y <= end.y)
 	{
-		try.x = fill->mapyx.x - fill->blockyx.x;
-		while (try.x >= 0)
+		try.x = start.x;
+		while (try.x >= end.x)
 		{
 			if (f(fill, try))
 				best = try;
@@ -50,15 +54,17 @@ t_xy	xd_yp(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
 	return (best);
 }
 
-t_xy	xp_yd(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
+t_xy	xp_yd(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
 	t_xy	best;
+	t_xy	try;
 
 	best = (t_xy){-1, -1};
-	while (try.y >= 0)
+	try.y = start.y;
+	while (try.y >= end.y)
 	{
-		try.x = 0;
-		while (try.x + fill->blockyx.x <= fill->mapyx.x)
+		try.x = start.x;
+		while (try.x <= end.x)
 		{
 			if (f(fill, try))
 				best = try;
@@ -69,15 +75,17 @@ t_xy	xp_yd(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
 	return (best);
 }
 
-t_xy	xp_yp(t_fill *fill, t_xy try, int (*f)(t_fill *, t_xy))
+t_xy	xp_yp(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
 	t_xy	best;
+	t_xy	try;
 
 	best = (t_xy){-1, -1};
-	while (try.x + fill->blockyx.x <= fill->mapyx.x)
+	try.x = start.x;
+	while (try.x <= end.x)
 	{
-		try.y = 0;
-		while (try.y + fill->blockyx.y <= fill->mapyx.y)
+		try.y = start.y;
+		while (try.y <= end.y)
 		{
 			if (f(fill, try))
 				best = try;

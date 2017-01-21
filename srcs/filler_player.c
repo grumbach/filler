@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:10:01 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 22:53:07 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/21 18:23:38 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				canplace(t_fill *fill, t_xy pos)
 	t_xy	try;
 	int		friendlies;
 
-	friendlies = 0;//ft_printf("oh[%d,%d]", pos.y, pos.x);
+	friendlies = 0; ft_printf("oh[%d,%d]", pos.y, pos.x);
 	try.y = 0;
 	while (try.y < fill->blockyx.y)
 	{
@@ -56,21 +56,21 @@ static t_xy		watchtower(t_fill *fill)//watch enemy's last move, ret opp dir
 		return (go_top_right(fill));
 }
 
-static t_xy		tryblock(t_fill *fill, t_xy dir)//place bloc in dir ret xy
+static t_xy		tryblock(t_fill *fill, t_xy start)//place bloc in dir ret xy
 {
-	if (dir.x)
+	if (start.x)
 	{
-		if (dir.y)
-			return (xd_yd(fill, dir, &canplace));
+		if (start.y)
+			return (xd_yd(fill, start, go_bot_right(fill), &canplace));//BR
 		else
-			return (xd_yp(fill, dir, &canplace));
+			return (xd_yp(fill, start, go_top_right(fill), &canplace));//TR
 	}
 	else
 	{
-		if (dir.y)
-			return (xp_yd(fill, dir, &canplace));
+		if (start.y)
+			return (xp_yd(fill, start, go_bot_left(fill), &canplace));//BL
 		else
-			return (xp_yp(fill, dir, &canplace));
+			return (xp_yp(fill, start, go_top_left(fill), &canplace));//TL
 	}
 }
 
