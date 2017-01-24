@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:18:10 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 18:13:12 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/24 05:09:56 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		**map_read(int y, int x, int location, t_xy *yx)
 
 	i = 0;
 //							ft_printf("y=%d x=%d\n", y, x);
-	*yx = (t_xy){x, y};
+	*yx = (t_xy){y, x};
 	map = ft_memalloc(y * sizeof(char*));
 	if (location)
 	{
