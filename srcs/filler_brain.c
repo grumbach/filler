@@ -6,44 +6,69 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 23:59:34 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/19 17:40:22 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/01/29 22:22:58 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_xy		go_top_left(t_fill *fill)
+t_xy		do_mission(t_plan *plan)
 {
-	t_xy	direction;
-
-	direction.x = fill->mapyx.x - fill->blockyx.x;
-	direction.y = fill->mapyx.y - fill->blockyx.y;
-	return (direction);
+	if (plan->mission_a.x == -1 && plan->mission_a.y == -1)
+	{
+		if (plan->mission_b.x == -1 && plan->mission_b.y == -1)
+			return (plan->mission_c);
+		else
+			return (plan->mission_b);
+	}
+	else
+		return (plan->mission_a);
 }
 
-t_xy		go_bot_left(t_fill *fill)
+void		mission_complete(t_plan *plan, int n)
 {
-	t_xy	direction;
-
-	direction.x = fill->mapyx.x - fill->blockyx.x;
-	direction.y = 0;
-	return (direction);
+	if (n == 1)
+		plan->mission_a = (t_xy){-1, -1};
+	else if (n == 2)
+		plan->mission_b = (t_xy){-1, -1};
 }
 
-t_xy		go_top_right(t_fill *fill)
+t_plan		planner(t_fill *fill, t_reach *enemy, t_reach *own)
 {
-	t_xy	direction;
+	t_plan	plan;
 
-	direction.x = 0;
-	direction.y = fill->mapyx.y - fill->blockyx.y;
-	return (direction);
-}
-
-t_xy		go_bot_right(t_fill *fill)
-{
-	t_xy	direction;
-
-	direction.x = 0;
-	direction.y = 0;
-	return (direction);
+	if (own->max.x <= enemy->max.x)
+	{
+		if (own->max.y <= enemy->max.y)
+		{
+			plan.mission_a = go_bot_right(fill);
+			plan.mission_b = go_top_left(fill);
+		}
+		else
+		{
+			plan.mission_a = go_top_right(fill);
+			plan.mission_b = go_bot_left(fill);
+		}
+	}
+	else
+	{
+		if (own->max.y <= enemy->max.y)
+		{
+			plan.mission_a = go_bot_left(fill);
+			plan.mission_b = go_top_right(fill);
+		}
+		else
+		{
+			plan.mission_a = go_top_left(fill);
+			plan.mission_b = go_bot_right(fill);
+		}
+	}
+	// plan.mission_a = go_bot_left(fill);
+	// plan.mission_b = go_bot_right(fill);
+	// plan.mission_c = go_top_right(fill);
+	//  (go_bot_left(fill));
+	//  (go_top_left(fill));
+	//  (go_bot_right(fill));
+	//  (go_top_right(fill));
+	return (plan);
 }
