@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 17:30:51 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/24 16:19:34 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/02/23 04:14:36 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				canplace(t_fill *fill, t_xy pos)
 				fill->map[pos.y + try.y][pos.x + try.x] == fill->player - 32)
 					friendlies++;
 				else if (fill->map[pos.y + try.y][pos.x + try.x] == EMPTY)
-					friendlies = friendlies;
+					(void)friendlies;
 				else
 					return (0);
 			}

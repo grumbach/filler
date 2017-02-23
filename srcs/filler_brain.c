@@ -6,69 +6,93 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 23:59:34 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/29 22:22:58 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/02/23 14:05:33 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_xy		do_mission(t_plan *plan)
+t_xy	pxd_yd(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
-	if (plan->mission_a.x == -1 && plan->mission_a.y == -1)
+	t_xy	best;
+	t_xy	try;
+
+ft_printf("GRRRR\n");
+	best = (t_xy){-1, -1};
+	try.y = start.y;
+	while (try.y >= end.y)
 	{
-		if (plan->mission_b.x == -1 && plan->mission_b.y == -1)
-			return (plan->mission_c);
-		else
-			return (plan->mission_b);
+		try.x = start.x;
+		while (try.x >= end.x)
+		{
+			if (f(fill, try))
+				best = try;
+			try.x--;
+		}
+		try.y--;
 	}
-	else
-		return (plan->mission_a);
+	return (best);
 }
 
-void		mission_complete(t_plan *plan, int n)
+t_xy	pxd_yp(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
-	if (n == 1)
-		plan->mission_a = (t_xy){-1, -1};
-	else if (n == 2)
-		plan->mission_b = (t_xy){-1, -1};
+	t_xy	best;
+	t_xy	try;
+
+	best = (t_xy){-1, -1};
+	try.x = start.x;
+	while (try.x >= end.x)
+	{
+		try.y = start.y;
+		while (try.y <= end.y)
+		{
+			if (f(fill, try))
+				best = try;
+			try.y++;
+		}
+		try.x--;
+	}
+	return (best);
 }
 
-t_plan		planner(t_fill *fill, t_reach *enemy, t_reach *own)
+t_xy	pxp_yd(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
 {
-	t_plan	plan;
+	t_xy	best;
+	t_xy	try;
 
-	if (own->max.x <= enemy->max.x)
+	best = (t_xy){-1, -1};
+	try.x = start.x;
+	while (try.x <= end.x)
 	{
-		if (own->max.y <= enemy->max.y)
+		try.y = start.y;
+		while (try.y >= end.y)
 		{
-			plan.mission_a = go_bot_right(fill);
-			plan.mission_b = go_top_left(fill);
+			if (f(fill, try))
+				best = try;
+			try.y--;
 		}
-		else
-		{
-			plan.mission_a = go_top_right(fill);
-			plan.mission_b = go_bot_left(fill);
-		}
+		try.x++;
 	}
-	else
+	return (best);
+}
+
+t_xy	pxp_yp(t_fill *fill, t_xy start, t_xy end, int (*f)(t_fill *, t_xy))
+{
+	t_xy	best;
+	t_xy	try;
+
+	best = (t_xy){-1, -1};
+	try.y = start.y;
+	while (try.y <= end.y)
 	{
-		if (own->max.y <= enemy->max.y)
+		try.x = start.x;
+		while (try.x <= end.x)
 		{
-			plan.mission_a = go_bot_left(fill);
-			plan.mission_b = go_top_right(fill);
+			if (f(fill, try))
+				best = try;
+			try.x++;
 		}
-		else
-		{
-			plan.mission_a = go_top_left(fill);
-			plan.mission_b = go_bot_right(fill);
-		}
+		try.y++;
 	}
-	// plan.mission_a = go_bot_left(fill);
-	// plan.mission_b = go_bot_right(fill);
-	// plan.mission_c = go_top_right(fill);
-	//  (go_bot_left(fill));
-	//  (go_top_left(fill));
-	//  (go_bot_right(fill));
-	//  (go_top_right(fill));
-	return (plan);
+	return (best);
 }

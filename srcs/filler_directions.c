@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 21:48:43 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/29 21:49:00 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/02/23 04:15:03 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_xy		go_bot_right(t_fill *fill)
 {
 	t_xy	direction;
 
+	(void)fill;
 	direction.x = 0;
 	direction.y = 0;
 	return (direction);

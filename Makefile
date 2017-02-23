@@ -6,11 +6,11 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/11 00:03:30 by agrumbac          #+#    #+#              #
-#    Updated: 2017/01/29 22:17:19 by agrumbac         ###   ########.fr        #
+#    Updated: 2017/02/23 04:21:22 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = filler
+NAME = agrumbac.filler
 
 SRC = filler.c filler_player.c filler_block.c filler_brain.c filler_spy.c \
 filler_directions.c
@@ -28,7 +28,7 @@ all:${NAME}
 ${NAME}: ${OBJ}
 	@make -C libft/
 	@echo Compiling ${NAME}
-	@${CC} ${CFLAGS} -I./libft/includes/ -Llibft/ -lft -I. -o $@ $<
+	@${CC} ${CFLAGS} -I./libft/includes/ -Llibft/ -lft -I. -o $@ ${OBJ}
 	@echo Job\'s done
 
 ${OBJDIR}/%.o : ./srcs/%.c
