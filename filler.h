@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/02/23 14:02:05 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/02/25 12:42:56 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int				enemy_pos(t_fill *fill, t_xy try);
 int				my_pos(t_fill *fill, t_xy try);
 char			enemy(char player);
 void			reach(t_fill *fill, t_reach *player, int (*f)(t_fill *, t_xy));
+t_xy			tryblock(t_fill *fill, t_xy start, int (*f)(t_fill *, t_xy));
+t_xy			lover(t_fill *fill, t_xy start);
 
 #endif
