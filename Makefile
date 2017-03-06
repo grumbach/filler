@@ -6,13 +6,13 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/11 00:03:30 by agrumbac          #+#    #+#              #
-#    Updated: 2017/03/06 20:23:16 by agrumbac         ###   ########.fr        #
+#    Updated: 2017/03/06 22:49:01 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = agrumbac.filler
 
-SRC = filler.c filler_player.c filler_block.c filler_brain.c filler_spy.c \
+SRC = filler.c filler_player.c filler_block.c filler_block2.c filler_spy.c \
 filler_directions.c filler_love.c
 
 OBJDIR = objs

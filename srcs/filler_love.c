@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 10:23:22 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/03/06 21:39:56 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 22:41:59 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	stalker(t_fill *fill, t_xy try)
 
 t_xy		lover(t_fill *fill, t_xy start)
 {
-	stalker(NULL, start);//initalise bestdist
+	stalker(NULL, start);
 	return (tryblock(fill, start, &stalker));
 }
 

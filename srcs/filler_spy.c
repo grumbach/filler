@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 17:30:51 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/02/23 04:14:36 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 22:42:20 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int				canplace(t_fill *fill, t_xy pos)
 	t_xy	try;
 	int		friendlies;
 
-	friendlies = 0; //ft_printf("oh[%d,%d]", pos.y, pos.x);
+	friendlies = 0;
 	try.y = 0;
 	while (try.y < fill->blockyx.y)
 	{
@@ -68,5 +68,5 @@ int				canplace(t_fill *fill, t_xy pos)
 		}
 		try.y++;
 	}
-	return (friendlies == 1 ? 1 : 0);//ft_printf("OK!");
+	return (friendlies == 1 ? 1 : 0);
 }
