@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 10:23:22 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/02/25 14:30:33 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 21:39:56 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,26 @@ t_xy		lover(t_fill *fill, t_xy start)
 {
 	stalker(NULL, start);//initalise bestdist
 	return (tryblock(fill, start, &stalker));
+}
+
+t_xy		tryblock(t_fill *fill, t_xy start, int (*f)(t_fill *, t_xy))
+{
+	if (start.x)
+	{
+		if (start.y)
+			return (fill->p ? xd_yd(fill, start, go_bot_right(fill), f)\
+			: pxd_yd(fill, start, go_bot_right(fill), f));
+		else
+			return (fill->p ? xd_yp(fill, start, go_top_right(fill), f)\
+			: pxd_yp(fill, start, go_top_right(fill), f));
+	}
+	else
+	{
+		if (start.y)
+			return (fill->p ? xp_yd(fill, start, go_bot_left(fill), f)\
+			: pxp_yd(fill, start, go_bot_left(fill), f));
+		else
+			return (fill->p ? xp_yp(fill, start, go_top_left(fill), f)\
+			: pxp_yp(fill, start, go_top_left(fill), f));
+	}
 }

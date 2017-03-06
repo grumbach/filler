@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/02/25 12:42:56 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:24:04 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_xy			pxp_yd(t_fill *fill, t_xy start, t_xy end, \
 				int (*f)(t_fill *, t_xy));
 t_xy			pxp_yp(t_fill *fill, t_xy start, t_xy end, \
 				int (*f)(t_fill *, t_xy));
-t_xy			go_top_left(t_fill *fill);
-t_xy			go_bot_left(t_fill *fill);
-t_xy			go_top_right(t_fill *fill);
-t_xy			go_bot_right(t_fill *fill);
+t_xy			go_top_left(const t_fill *fill);
+t_xy			go_bot_left(const t_fill *fill);
+t_xy			go_top_right(const t_fill *fill);
+t_xy			go_bot_right(const t_fill *fill);
 int				canplace(t_fill *fill, t_xy pos);
 int				enemy_pos(t_fill *fill, t_xy try);
 int				my_pos(t_fill *fill, t_xy try);

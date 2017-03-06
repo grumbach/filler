@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/11 00:03:30 by agrumbac          #+#    #+#              #
-#    Updated: 2017/02/25 12:42:36 by agrumbac         ###   ########.fr        #
+#    Updated: 2017/03/06 20:23:16 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ ${NAME}: ${OBJ}
 	@make -C libft/
 	@echo Compiling ${NAME}
 	@${CC} ${CFLAGS} -I./libft/includes/ -Llibft/ -lft -I. -o $@ ${OBJ}
-	@echo Job\'s done
+	@echo "\033[32mJob's done\033[0m"
 
 ${OBJDIR}/%.o : ./srcs/%.c
 	@echo Compiling $@
@@ -49,7 +49,7 @@ fclean: clean
 	@/bin/rm -f ${NAME} test
 
 test:
-	@${CC} -I./libft/includes/ -Llibft/ -lft -I. -o ${NAME} \
+	@${CC} -I./libft/includes/ -fsanitize=address -Llibft/ -lft -I. -o ${NAME} \
 	$(addprefix srcs/, ${SRC})
 
 re: fclean all
@@ -57,3 +57,5 @@ re: fclean all
 build: ${OBJ}
 
 .PHONY: all clean fclean re test
+
+#make -C .. && hilite ./filler_vm -f maps/map01 -p1 players/carli.filler -p2 ../agrumbac.filler

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:18:10 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/01/24 05:09:56 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 21:39:35 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ static int		filler(t_fill *fill, t_xy *ret, char *line)
 			fill->block = map_read(ft_atoi(line + 6), ft_atoi(line + 6 + \
 				ft_intlen(ft_atoi(line + 6))), 0, &(fill->blockyx));
 			ft_memdel((void**)&line);
-			if (!(blockplacer(fill, ret)))
-				return (0);
+			blockplacer(fill, ret);
 			free_fill(fill);
 			break ;
 		}
@@ -111,18 +110,19 @@ int				main(void)
 			if (line[9] == 'p')
 			{
 				fill.player = (line[10] == '2' ? PLAYER2 : PLAYER1);
-				if (!(filler(&fill, &ret, NULL)))
-					return (0);
+				filler(&fill, &ret, NULL);
 //							ft_printf("%42	player : %c\n", fill.player);
 				ft_memdel((void**)&line);
 			}
-			else if (!(filler(&fill, &ret, line)))
-				return (0);
+			else
+				filler(&fill, &ret, line);
 //						ft_printf("%42	returned(%d %d)\n", ret.y, ret.x);
 			ft_putstr(ft_itoa(ret.y));
 			ft_putstr(" ");
 			ft_putendl(ft_itoa(ret.x));
 		}
+		if (ret.x == ret.y && ret.x == -1)
+			break ;
 		gnl = ft_get_next_line(0, &line);
 	}
 //							ft_printf("%42	bye\n");

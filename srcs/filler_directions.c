@@ -6,13 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 21:48:43 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/02/23 04:15:03 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:21:21 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_xy		go_top_left(t_fill *fill)
+t_xy		go_top_left(const t_fill *fill)
 {
 	t_xy	direction;
 
@@ -21,7 +21,7 @@ t_xy		go_top_left(t_fill *fill)
 	return (direction);
 }
 
-t_xy		go_bot_left(t_fill *fill)
+t_xy		go_bot_left(const t_fill *fill)
 {
 	t_xy	direction;
 
@@ -30,7 +30,7 @@ t_xy		go_bot_left(t_fill *fill)
 	return (direction);
 }
 
-t_xy		go_top_right(t_fill *fill)
+t_xy		go_top_right(const t_fill *fill)
 {
 	t_xy	direction;
 
@@ -39,7 +39,7 @@ t_xy		go_top_right(t_fill *fill)
 	return (direction);
 }
 
-t_xy		go_bot_right(t_fill *fill)
+t_xy		go_bot_right(const t_fill *fill)
 {
 	t_xy	direction;
 
