@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:18:10 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/03/06 22:46:01 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/06 23:05:28 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char		**map_read(int y, int x, int location, t_xy *yx)
 	return (map);
 }
 
-static int		filler(t_fill *fill, t_xy *ret, char *line)
+static void		filler(t_fill *fill, t_xy *ret, char *line)
 {
 	int		gnl;
 
@@ -84,7 +84,6 @@ static int		filler(t_fill *fill, t_xy *ret, char *line)
 		gnl = ft_get_next_line(0, &line);
 	}
 	ft_memdel((void**)&line);
-	return (1);
 }
 
 int				main(void)
@@ -104,14 +103,10 @@ int				main(void)
 			if (line[9] == 'p')
 			{
 				fill.player = (line[10] == '2' ? PLAYER2 : PLAYER1);
-				filler(&fill, &ret, NULL);
 				ft_memdel((void**)&line);
 			}
-			else
-				filler(&fill, &ret, line);
-			ft_putstr(ft_itoa(ret.y));
-			ft_putstr(" ");
-			ft_putendl(ft_itoa(ret.x));
+			filler(&fill, &ret, line);
+			ft_printf("%d %d\n", ret.y, ret.x);
 		}
 		if (ret.y == -1 && ret.x == -1)
 			break ;
