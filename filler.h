@@ -6,16 +6,14 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 03:19:39 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/03/06 20:24:04 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/08 21:34:06 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-#include "libft.h"
-
-# define PLAYER_NAME "filler"
+# include "libft.h"
 
 # define PLAYER1 'o'
 # define PLAYER2 'x'
