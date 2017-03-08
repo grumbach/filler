@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:10:01 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/03/06 22:43:02 by agrumbac         ###   ########.fr       */
+/*   Updated: 2017/03/08 03:57:32 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static t_xy		watchtower(t_fill *fill)
 	if (!(reached_dir(fill, enemy_d, own) || reached_dir(fill, enemy_d, enemy)))
 	{
 		fill->p = 0;
-		return (tryblock(fill, direction(fill, enemy_d), &canplace));
+		if (!reached_dir(fill, enemy_d + 90, enemy))
+			return (tryblock(fill, direction(fill, enemy_d), &canplace));
 	}
 	fill->p = 1;
 	if (reached_dir(fill, enemy_d + 180, enemy))
